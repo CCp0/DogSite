@@ -5,12 +5,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { DogProfileComponent } from './dog-profile/dog-profile.component';
 import { ListDogsComponent } from './list-dogs/list-dogs.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DogProfileComponent,
-    ListDogsComponent
+    ListDogsComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

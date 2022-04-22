@@ -1,2 +1,24 @@
-<h1>{{dogData.breed}}</h1>
-<img src="{{dogData.message}}" width="200" height="200">
+<div class="container mt-2">
+<div class="card bg-dark text-white mb-3 d-inline-block">
+    <div class="row">
+        <div class="col">
+            <h3 class="card-title">{{dogData.breed}}</h3>
+        <img src="{{dogData.message}}" style="width: 15em; height: 15em;">
+        </div>
+        <div class="col">
+            <h4>Likes</h4>
+            <button class="d-block" style="width: 4em; height: 4em;">
+                <i (click)="voteUp()" class="bi bi-arrow-up-square-fill"></i>
+            </button>
+            <label id="rank">{{dogData.rank}}</label>
+                <i (click)="voteDown()" class="fas fa-arrow-down d-block" style="width: 4em; height: 4em;"></i>
+            <button>
+                <i class="bi bi-heart"></i>
+            </button>
+            <button>
+                <i class="bi bi-heart-fill"></i>
+            </button>
+        </div>
+    </div>
+</div>
+</div>

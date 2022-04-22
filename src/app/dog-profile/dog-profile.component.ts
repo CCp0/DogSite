@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IDogDetails } from '../interfaces/dogDetails';
+import { IDogDetails } from '../interfaces/dogDetails.model';
 import { DogBreedAPIService } from '../services/dog-breed-api.service';
 
 @Component({
@@ -16,4 +16,12 @@ export class DogProfileComponent implements OnInit {
   ngOnInit(): void {
     
   }
+  voteUp():boolean{
+    //this.dogData.voteUp();
+    return false;
+    }
+    voteDown():boolean{
+    //this.dogData.voteDown();
+    return false;
+    }
 }
