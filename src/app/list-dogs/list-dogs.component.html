@@ -1,0 +1,6 @@
+<button (click)="getRandomDogDetails()">Get Data</button>
+<div *ngIf="rndDogData.breed">
+    <h1>{{rndDogData.breed}}</h1>
+    <img src="{{rndDogData.message}}" width="200" height="200">
+</div>
+<app-dog-profile *ngFor="let dogData of dogsData" [dogData]="dogData"></app-dog-profile>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { IDogDetails } from '../interfaces/dogDetails';
 import { DogBreedAPIService } from '../services/dog-breed-api.service';
 
@@ -9,23 +9,11 @@ import { DogBreedAPIService } from '../services/dog-breed-api.service';
   providers:[DogBreedAPIService]
 })
 export class DogProfileComponent implements OnInit {
-  dogData!: IDogDetails;
-  errorMessage:any;
-
+  
+@Input() dogData!:IDogDetails;
   constructor(private _dogService:DogBreedAPIService) { }
 
   ngOnInit(): void {
-    this.getDogDetails();
-  }
-  getDogDetails() : boolean {
-    this._dogService.getRandomDogData().subscribe(
-      dogData => {
-        this.dogData = dogData;
-        this.dogData.breed = dogData.message.split('/')[4];
-        console.log('Dog Pic Origin: ' + this.dogData.message);
-      },
-      error => this.errorMessage = <any>error
-    );
-    return false;
+    
   }
 }
