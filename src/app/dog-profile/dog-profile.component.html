@@ -8,16 +8,18 @@
         </div>
         <div class="col">
             <h4>Likes</h4>
-            <button class="d-block" style="width: 4em; height: 4em;">
+            <button class="d-block" style="width: 2em; height: 2em;">
                 <i (click)="voteUp()" class="bi bi-arrow-up-square-fill"></i>
             </button>
             <label id="rank">{{dogData.rank}}</label>
-                <i (click)="voteDown()" class="fas fa-arrow-down d-block" style="width: 4em; height: 4em;"></i>
-            <button>
-                <i class="bi bi-heart"></i>
+            <button class="d-block" style="width: 2em; height: 2em;">
+                <i (click)="voteDown()" class="bi bi-arrow-down-square-fill"></i>
             </button>
-            <button>
+            <button *ngIf="dogData.userIDFavourite" style="width: 2em; height: 2em;">
                 <i class="bi bi-heart-fill"></i>
+            </button>
+            <button *ngIf="!dogData.userIDFavourite">
+                <i class="bi bi-heart"></i>
             </button>
         </div>
     </div>

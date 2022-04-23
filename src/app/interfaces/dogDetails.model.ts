@@ -5,6 +5,7 @@ export interface IDogDetails {
     breed: string;
     rank:number;
     votes:number;
+    userIDFavourite:number;
 }
 export class DogDetails {
     title:string;
@@ -13,8 +14,8 @@ export class DogDetails {
     rank:number;
     votes:number;
 
-constructor(title:string, message:string, breed:string, rank:number ,votes?:number) {
-    this.title = title;
+constructor(message:string, breed:string, rank:number ,votes?:number, title?:string) {
+    this.title = title || "";
     this.message = message;
     this.breed = breed;
     this.rank = rank;

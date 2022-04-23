@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
 import { User } from '../interfaces/user.model';
-
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -9,13 +9,11 @@ import { User } from '../interfaces/user.model';
 export class LoginComponent implements OnInit {
   private logins: User[];
   constructor() { 
-    
     this.logins = [
       new User(1, "Login1", "Password1"),
       new User(1, "Login2", "Password2")
     ]
   }
-
   ngOnInit(): void {
   }
   validLogin(username: any, password: any) : number

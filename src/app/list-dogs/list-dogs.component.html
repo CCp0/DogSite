@@ -14,7 +14,7 @@
 <div *ngIf="rndDogData?.breed">
     <app-dog-profile [dogData]="rndDogData"></app-dog-profile>
 </div>
-<div *ngIf=""> <!-- Checks if at least one dog in the array is added -->
+<div>
     <app-dog-profile *ngFor="let dogData of dogsData" [dogData]="dogData"></app-dog-profile>
 </div>
 </body>

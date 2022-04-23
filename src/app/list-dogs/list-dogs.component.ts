@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IDogDetails } from '../interfaces/dogDetails.model';
+import { DogDetails, IDogDetails } from '../interfaces/dogDetails.model';
 import { User } from '../interfaces/user.model';
+import { LoginComponent } from '../login/login.component';
 import { DogBreedAPIService } from '../services/dog-breed-api.service';
+import { DogDatabaseService } from '../services/dog-database.service';
 
 @Component({
   selector: 'app-list-dogs',
@@ -12,22 +14,35 @@ import { DogBreedAPIService } from '../services/dog-breed-api.service';
 export class ListDogsComponent implements OnInit {
   //All dog data
   rndDogData!: IDogDetails;
-  dogsData:IDogDetails[] = new Array(2);
+  dogsData!: IDogDetails[];
   searchedDogData!:IDogDetails;
   userFavourites!:IDogDetails[];
+  //Dog Image URL
+  private _startDogUrl = "https://dog.ceo/api/breed/";
+  private _endDogUrl = "/images/random";
   //User Info
-  user!:User;
+  //userID = LoginComponent.arguments.userID;
   
   errorMessage:any;
 
-  constructor(private _dogService:DogBreedAPIService) { }
+  constructor(private _dogService:DogBreedAPIService, private _dogDatabase:DogDatabaseService) {
+    
+   }
 
   ngOnInit(): void {
-    for(let i = 0; i < this.dogsData.length; i++)
-    {
-      this.getDogDetails(i);
-    }
+    this._dogDatabase.getDisplayDogData().subscribe(
+      dogsData =>
+      {this.dogsData = this.dogsData
+        console.log(dogsData);
+      }
+    );
+    this.dogsData?.forEach(data => {
+       data.message = this._startDogUrl + data.breed + this._endDogUrl;
+       console.log(data.message);
+      }
+      );
   }
+
   getDogDetails(i:number) : IDogDetails {
     this._dogService.getRandomDogData().subscribe(
       dogData => {

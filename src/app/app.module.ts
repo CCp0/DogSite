@@ -7,6 +7,9 @@ import { DogProfileComponent } from './dog-profile/dog-profile.component';
 import { ListDogsComponent } from './list-dogs/list-dogs.component';
 import { LoginComponent } from './login/login.component';
 import { RouterModule } from '@angular/router';
+import { environment } from 'src/environments/environment';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,9 @@ import { RouterModule } from '@angular/router';
       { path: "", pathMatch: "full", redirectTo: "home" },
       {path: 'login', component: LoginComponent },
       {path: 'dogs', component: ListDogsComponent }
-    ])
+    ]),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]
