@@ -1,12 +1,5 @@
-<body class="bg-dark">
-<button (click)="getRandomDogDetails()">Get Data</button>
-<div *ngIf="rndDogData.breed">
-    <h1>{{rndDogData.breed}}</h1>
-    <img src="{{rndDogData.message}}" width="200" height="200">
-</div>
-<div class="position-absolute top-0 end-0">
-    <button>Log In</button>
-</div>
+<body class="bg-dark text-white min-vh-100 bg-opacity-75">
+<button (click)="getRandomDogDetails()">Random Dog</button>
 <div class="input-group d-flex justify-content-center m-2">
     <div class="form-outline text-center">
       <input id="search-input" type="search" id="form1" class="form-control" placeholder="Search" #input/>
@@ -15,9 +8,13 @@
       <i class="bi bi-search"></i>
     </button>
   </div>
-  <div *ngIf="searchedDogData.message">
+  <div *ngIf="searchedDogData?.breed">
       <app-dog-profile [dogData]="searchedDogData"></app-dog-profile>
-      <p>Success</p>
   </div>
-<app-dog-profile *ngFor="let dogData of dogsData" [dogData]="dogData"></app-dog-profile>
+<div *ngIf="rndDogData?.breed">
+    <app-dog-profile [dogData]="rndDogData"></app-dog-profile>
+</div>
+<div *ngIf=""> <!-- Checks if at least one dog in the array is added -->
+    <app-dog-profile *ngFor="let dogData of dogsData" [dogData]="dogData"></app-dog-profile>
+</div>
 </body>

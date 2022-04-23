@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IDogDetails } from '../interfaces/dogDetails.model';
+import { User } from '../interfaces/user.model';
 import { DogBreedAPIService } from '../services/dog-breed-api.service';
 
 @Component({
@@ -14,7 +15,9 @@ export class ListDogsComponent implements OnInit {
   dogsData:IDogDetails[] = new Array(2);
   searchedDogData!:IDogDetails;
   userFavourites!:IDogDetails[];
-
+  //User Info
+  user!:User;
+  
   errorMessage:any;
 
   constructor(private _dogService:DogBreedAPIService) { }
@@ -41,6 +44,7 @@ export class ListDogsComponent implements OnInit {
       rndDogData => {
         this.rndDogData = rndDogData;
         this.rndDogData.breed = rndDogData.message.split('/')[4];
+        this.rndDogData.title = "Random Dog";
         console.log('Random Dog Pic Origin: ' + this.rndDogData.message);
       },
       error => this.errorMessage = <any>error
@@ -53,6 +57,7 @@ export class ListDogsComponent implements OnInit {
         searchedDogData =>{
           this.searchedDogData = searchedDogData;
           this.searchedDogData.breed = dogSearch;
+          this.searchedDogData.title = "Search Result";
           console.log(searchedDogData);
         }
       )

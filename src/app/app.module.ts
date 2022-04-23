@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { DogProfileComponent } from './dog-profile/dog-profile.component';
 import { ListDogsComponent } from './list-dogs/list-dogs.component';
 import { LoginComponent } from './login/login.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,12 @@ import { LoginComponent } from './login/login.component';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot([
+      { path: "", pathMatch: "full", redirectTo: "home" },
+      {path: 'login', component: LoginComponent },
+      {path: 'dogs', component: ListDogsComponent }
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]
