@@ -4,7 +4,7 @@ export interface IDogDetails {
     status: string;
     breed: string;
     rank:number;
-    votes:number;
+    Likes:number;
     userIDFavourite:number;
 }
 export class DogDetails {
@@ -12,21 +12,21 @@ export class DogDetails {
     message: string;
     breed: string;
     rank:number;
-    votes:number;
+    Likes:number;
 
 constructor(message:string, breed:string, rank:number ,votes?:number, title?:string) {
     this.title = title || "";
     this.message = message;
     this.breed = breed;
     this.rank = rank;
-    this.votes = votes || 0;
+    this.Likes = votes || 0;
 }
 voteUp()
 {
-    this.votes++;
+    this.Likes++;
 }
 voteDown()
 {
-    this.votes--;
+    this.Likes--;
 }
 }

@@ -4,7 +4,7 @@
         <div class="col">
             <h2 *ngIf="dogData.title">{{dogData.title}}:</h2>
             <h3 class="card-title">{{dogData.breed}}</h3>
-        <img src="{{dogData.message}}" style="width: 15em; height: 15em;">
+        <img src="https://dog.ceo/api/breed/{{dogData.breed}}/images/random" style="width: 15em; height: 15em;">
         </div>
         <div class="col">
             <h4>Likes</h4>

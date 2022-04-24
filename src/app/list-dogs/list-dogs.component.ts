@@ -32,15 +32,14 @@ export class ListDogsComponent implements OnInit {
   ngOnInit(): void {
     this._dogDatabase.getDisplayDogData().subscribe(
       dogsData =>
-      {this.dogsData = this.dogsData
-        console.log(dogsData);
+      {
+        this.dogsData = dogsData;
       }
     );
-    this.dogsData?.forEach(data => {
-       data.message = this._startDogUrl + data.breed + this._endDogUrl;
-       console.log(data.message);
+      for(let i = 0; i < this.dogsData.length; i++)
+      {
+        this.dogsData[i].message = this._startDogUrl + this.dogsData[i].breed + this._endDogUrl;
       }
-      );
   }
 
   getDogDetails(i:number) : IDogDetails {
