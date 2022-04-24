@@ -13,10 +13,10 @@ import { DogDatabaseService } from '../services/dog-database.service';
 })
 export class ListDogsComponent implements OnInit {
   //All dog data
-  rndDogData!: IDogDetails;
-  dogsData!: IDogDetails[];
-  searchedDogData!:IDogDetails;
-  userFavourites!:IDogDetails[];
+  rndDogData!: DogDetails;
+  dogsData!: DogDetails[];
+  searchedDogData!:DogDetails;
+  userFavourites!:DogDetails[];
   //Dog Image URL
   private _startDogUrl = "https://dog.ceo/api/breed/";
   private _endDogUrl = "/images/random";
@@ -42,7 +42,7 @@ export class ListDogsComponent implements OnInit {
       }
   }
 
-  getDogDetails(i:number) : IDogDetails {
+  getDogDetails(i:number) : DogDetails {
     this._dogService.getRandomDogData().subscribe(
       dogData => {
         this.dogsData[i] = dogData;

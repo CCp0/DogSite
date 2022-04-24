@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
-import { IDogDetails } from '../interfaces/dogDetails.model';
+import { DogDetails, IDogDetails } from '../interfaces/dogDetails.model';
 import { IUser } from '../interfaces/user.model';
 
 @Injectable({
@@ -10,25 +10,25 @@ import { IUser } from '../interfaces/user.model';
 })
 export class DogDatabaseService {
 
-  dogDataCollection: AngularFirestoreCollection<IDogDetails>;
-  favouriteCollection: AngularFirestoreCollection<IDogDetails>;
-  displayDogData!: Observable<IDogDetails[]>;
-  favouriteDogData!: Observable<IDogDetails[]>
+  dogDataCollection: AngularFirestoreCollection<DogDetails>;
+  favouriteCollection: AngularFirestoreCollection<DogDetails>;
+  displayDogData!: Observable<DogDetails[]>;
+  favouriteDogData!: Observable<DogDetails[]>
   constructor(private _http:HttpClient, private _afs:AngularFirestore) {
-    this.dogDataCollection = _afs.collection<IDogDetails>("displayDogs");
-    this.favouriteCollection = _afs.collection<IDogDetails>("favouriteDogs");
+    this.dogDataCollection = _afs.collection<DogDetails>("displayDogs");
+    this.favouriteCollection = _afs.collection<DogDetails>("favouriteDogs");
    }
-   getDisplayDogData(): Observable<IDogDetails[]>
+   getDisplayDogData(): Observable<DogDetails[]>
    {
      this.displayDogData = this.dogDataCollection.valueChanges();
      return this.displayDogData;
    }
-   getFavourites(userID:number): Observable<IDogDetails[]>
+   getFavourites(userID:number): Observable<DogDetails[]>
    {
      this.favouriteDogData = this.favouriteCollection.valueChanges();
      return this.favouriteDogData;
    }
-   addFavourite(dog:IDogDetails): void
+   addFavourite(dog:DogDetails): void
    {
      this.favouriteCollection.add(JSON.parse(JSON.stringify(dog)));
    }

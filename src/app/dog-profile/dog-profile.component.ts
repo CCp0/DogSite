@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IDogDetails } from '../interfaces/dogDetails.model';
+import { DogDetails, IDogDetails } from '../interfaces/dogDetails.model';
 import { DogBreedAPIService } from '../services/dog-breed-api.service';
 
 @Component({
@@ -10,18 +10,22 @@ import { DogBreedAPIService } from '../services/dog-breed-api.service';
 })
 export class DogProfileComponent implements OnInit {
   
-@Input() dogData!:IDogDetails;
+@Input() dogData!:DogDetails;
   constructor(private _dogService:DogBreedAPIService) { }
 
   ngOnInit(): void {
     
   }
   voteUp():boolean{
-    //this.dogData.voteUp();
+    this.dogData.voteUp();
     return false;
     }
-    voteDown():boolean{
-    //this.dogData.voteDown();
+  voteDown():boolean{
+     this.dogData.voteDown();
     return false;
     }
+  favourite()
+  {
+
+  }
 }

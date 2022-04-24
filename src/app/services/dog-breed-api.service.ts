@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IDogDetails } from '../interfaces/dogDetails.model';
+import { DogDetails, IDogDetails } from '../interfaces/dogDetails.model';
 import { HttpClient, HttpErrorResponse} from "@angular/common/http";
 import { catchError, Observable, tap } from 'rxjs';
 
@@ -13,22 +13,22 @@ export class DogBreedAPIService {
   private _endDogUrl = "/images/random";
   constructor(private _http:HttpClient) { }
 
-  getRandomDogData(): Observable<IDogDetails> {
-    return this._http.get<IDogDetails>(this._rndSiteURL)
+  getRandomDogData(): Observable<DogDetails> {
+    return this._http.get<DogDetails>(this._rndSiteURL)
     .pipe(
       tap(data => console.log('DogData/error' + JSON.stringify(data))
       )
     );
   }
-  basePopulateDogData(): Observable<IDogDetails> {
-    return this._http.get<IDogDetails>(this._rndSiteURL)
+  basePopulateDogData(): Observable<DogDetails> {
+    return this._http.get<DogDetails>(this._rndSiteURL)
     .pipe(
       tap(data => console.log('DogData/error' + JSON.stringify(data))
       )
     );
   }
-  searchDogData(dogSearch:string): Observable<IDogDetails>
+  searchDogData(dogSearch:string): Observable<DogDetails>
   {
-    return this._http.get<IDogDetails>(this._startDogUrl + dogSearch + this._endDogUrl);
+    return this._http.get<DogDetails>(this._startDogUrl + dogSearch + this._endDogUrl);
   }
 }
