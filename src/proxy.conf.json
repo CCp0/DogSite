@@ -1,7 +1,8 @@
 {
     "/api":{
-        "target": "http://localhost:4200/dogs",
-        "secure": false,
+        "target": "https://dog.ceo",
+        "secure": true,
+        "changeOrigin": true,
         "logLevel" : "debug"
     }
 }
