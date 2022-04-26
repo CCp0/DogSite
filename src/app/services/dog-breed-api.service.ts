@@ -9,7 +9,7 @@ import { catchError, Observable, tap } from 'rxjs';
 export class DogBreedAPIService {
 
   private _rndSiteURL="https://dog.ceo/api/breeds/image/random";
-  private _startDogUrl = "https://dog.ceo/api/breed/";
+  private _startDogUrl = "/api/breed/";
   private _endDogUrl = "/images/random";
   constructor(private _http:HttpClient) { }
 
