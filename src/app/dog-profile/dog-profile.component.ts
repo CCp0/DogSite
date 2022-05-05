@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DogDetails, IDogDetails } from '../interfaces/dogDetails.model';
 import { DogBreedAPIService } from '../services/dog-breed-api.service';
+import { DogDatabaseService } from '../services/dog-database.service';
 
 @Component({
   selector: 'app-dog-profile',
@@ -11,7 +12,7 @@ import { DogBreedAPIService } from '../services/dog-breed-api.service';
 export class DogProfileComponent implements OnInit {
   
 @Input() dogData!:DogDetails;
-  constructor(private _dogService:DogBreedAPIService) { }
+  constructor(private _dogService:DogBreedAPIService, private _dogDatabase:DogDatabaseService) { }
 
   ngOnInit(): void {
     
@@ -26,6 +27,10 @@ export class DogProfileComponent implements OnInit {
     }
   favourite()
   {
-
+    const fave = this._dogDatabase.addFavourite(this.dogData);
+  }
+  unfavourite()
+  {
+    const unfave = this._dogDatabase.removeFavourite(this.dogData);
   }
 }

@@ -17,7 +17,7 @@ export class ListDogsComponent implements OnInit {
   dogsData!: DogDetails[];
   searchedDogData!:DogDetails;
   userFavourites!:DogDetails[];
-  //Dog Image URL
+  //Dog Object URL
   private _startDogUrl = "https://dog.ceo/api/breed/";
   private _endDogUrl = "/images/random";
   //User Info
@@ -30,16 +30,22 @@ export class ListDogsComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    console.log("Test Start");
     this._dogDatabase.getDisplayDogData().subscribe(
       dogsData =>
       {
         this.dogsData = dogsData;
       }
     );
-      for(let i = 0; i < this.dogsData.length; i++)
+    this._dogDatabase.getFavourites(1).subscribe(
+      userFavourites =>
       {
-        this.dogsData[i].message = this._startDogUrl + this.dogsData[i].breed + this._endDogUrl;
+        this.userFavourites = userFavourites;
       }
+    );
+    console.log("No. of Favourites: " + this.userFavourites?.length);
+    console.log("No. of Base Dogs: " + this.dogsData?.length);
+    console.log("Test Complete");
   }
 
   getDogDetails(i:number) : DogDetails {
@@ -72,6 +78,13 @@ export class ListDogsComponent implements OnInit {
           this.searchedDogData = searchedDogData;
           this.searchedDogData.breed = dogSearch;
           this.searchedDogData.title = "Search Result";
+          for(let i = 0; i < this.userFavourites.length; i++)
+          {
+            if(searchedDogData.breed == this.userFavourites[i].breed)
+            {
+                searchedDogData.userIDFavourite = true;
+            }
+          }
           console.log(searchedDogData);
         }
       )

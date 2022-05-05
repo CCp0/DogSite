@@ -4,8 +4,9 @@
         <div class="col">
             <h2 *ngIf="dogData.title">{{dogData.title}}:</h2>
             <h3 class="card-title">{{dogData.breed}}</h3>
-        <img src="https://dog.ceo/api/breed/{{dogData.breed}}/images/random" style="width: 15em; height: 15em;">
-        </div>
+        <img src="{{dogData.message}}" style="width: 15em; height: 15em;">
+        
+    </div>
         <div class="col">
             <h4>Likes</h4>
             <button class="d-block" style="width: 2em; height: 2em;">
@@ -15,10 +16,10 @@
             <button class="d-block" style="width: 2em; height: 2em;">
                 <i (click)="voteDown()" class="bi bi-arrow-down-square-fill"></i>
             </button>
-            <button *ngIf="dogData.userIDFavourite" style="width: 2em; height: 2em;">
+            <button *ngIf="dogData.userIDFavourite" style="width: 2em; height: 2em;" (click)="unfavourite()">
                 <i class="bi bi-heart-fill"></i>
             </button>
-            <button *ngIf="!dogData.userIDFavourite">
+            <button *ngIf="!dogData.userIDFavourite" style="width: 2em; height: 2em;" (click)="favourite()">
                 <i class="bi bi-heart"></i>
             </button>
         </div>

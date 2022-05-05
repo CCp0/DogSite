@@ -4,7 +4,7 @@ export interface IDogDetails {
     breed: string;
     rank:number;
     Likes:number;
-    userIDFavourite:number;
+    userIDFavourite:boolean;
 }
 export class DogDetails implements IDogDetails{
     title:string;
@@ -12,14 +12,14 @@ export class DogDetails implements IDogDetails{
     breed: string;
     rank:number;
     Likes:number;
-    userIDFavourite:number;
-constructor(message:string, breed:string, rank:number ,votes?:number, title?:string, userIDFavourite?:number) {
+    userIDFavourite:boolean;
+constructor(message:string, breed:string, rank:number ,votes?:number, title?:string, userIDFavourite?:boolean) {
     this.title = title || "";
     this.message = message;
     this.breed = breed;
     this.rank = rank;
     this.Likes = votes || 0;
-    this.userIDFavourite = userIDFavourite || 0;
+    this.userIDFavourite = false;
 }
 voteUp()
 {

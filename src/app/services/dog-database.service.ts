@@ -16,7 +16,7 @@ export class DogDatabaseService {
   favouriteDogData!: Observable<DogDetails[]>
   constructor(private _http:HttpClient, private _afs:AngularFirestore) {
     this.dogDataCollection = _afs.collection<DogDetails>("displayDogs");
-    this.favouriteCollection = _afs.collection<DogDetails>("favouriteDogs");
+    this.favouriteCollection = _afs.collection<DogDetails>("user1Favourites");
    }
    getDisplayDogData(): Observable<DogDetails[]>
    {
@@ -31,5 +31,11 @@ export class DogDatabaseService {
    addFavourite(dog:DogDetails): void
    {
      this.favouriteCollection.add(JSON.parse(JSON.stringify(dog)));
+     dog.userIDFavourite = true;
+   }
+   removeFavourite(dog:DogDetails): void
+   {
+    this.favouriteCollection.doc().delete;
+    dog.userIDFavourite = false;
    }
 }
