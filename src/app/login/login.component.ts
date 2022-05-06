@@ -1,6 +1,7 @@
-import { Component, EventEmitter, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { User } from '../interfaces/user.model';
 import { ActivatedRoute } from '@angular/router';
+import { LoginServiceService } from '../services/login-service.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -8,26 +9,35 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   private logins: User[];
-  constructor() { 
+  constructor(private loginService: LoginServiceService) { 
     this.logins = [
       new User(1, "Login1", "Password1"),
-      new User(1, "Login2", "Password2")
+      new User(2, "Login2", "Password2")
     ]
   }
+
   ngOnInit(): void {
   }
-  validLogin(username: any, password: any) : number
+  validLogin(username: any, password: any) : void
   {
     let valid = false;
     let userID!:number;
     for(let i = 0; i < this.logins.length; i++)
     {
-      if(username == this.logins[i].username && password == this.logins[i].password)
+      console.log(this.logins[i].username + " = " + username.value);
+      console.log(this.logins[i].password + " = " + password);
+      if(username.value == this.logins[i].username && password.value == this.logins[i].password)
       {
         valid = true;
         userID = this.logins[i].userID;
       }
     }
-    return userID;
+    if(valid == true)
+    {
+    this.loginService.setID(userID);
+    }
+    else{
+      alert("Invalid Credentials");
+    }
   }
 }

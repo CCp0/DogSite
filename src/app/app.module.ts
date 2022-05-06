@@ -22,7 +22,7 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot([
-      { path: "", pathMatch: "full", redirectTo: "home" },
+      { path: "", pathMatch: "full", redirectTo: "dogs" },
       {path: 'login', component: LoginComponent },
       {path: 'dogs', component: ListDogsComponent }
     ]),

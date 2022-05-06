@@ -26,7 +26,7 @@ export class ListDogsComponent implements OnInit {
   errorMessage:any;
 
   constructor(private _dogService:DogBreedAPIService, private _dogDatabase:DogDatabaseService) {
-    this._dogDatabase.getFavourites(1).subscribe(
+    this._dogDatabase.getFavourites().subscribe(
       dogsData =>
       {
         this.dogsData = dogsData;
