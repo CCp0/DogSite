@@ -20,13 +20,6 @@ export class DogBreedAPIService {
       )
     );
   }
-  basePopulateDogData(): Observable<DogDetails> {
-    return this._http.get<DogDetails>(this._rndSiteURL)
-    .pipe(
-      tap(data => console.log('DogData/error' + JSON.stringify(data))
-      )
-    );
-  }
   searchDogData(dogSearch:string): Observable<DogDetails>
   {
     return this._http.get<DogDetails>(this._startDogUrl + dogSearch + this._endDogUrl);

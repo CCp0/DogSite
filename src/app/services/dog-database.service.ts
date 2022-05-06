@@ -20,22 +20,23 @@ export class DogDatabaseService {
    }
    getDisplayDogData(): Observable<DogDetails[]>
    {
-     this.displayDogData = this.dogDataCollection.valueChanges();
+     this.displayDogData = this.dogDataCollection.valueChanges({idField:'id'});
      return this.displayDogData;
    }
    getFavourites(userID:number): Observable<DogDetails[]>
    {
-     this.favouriteDogData = this.favouriteCollection.valueChanges();
+     this.favouriteDogData = this.favouriteCollection.valueChanges({idField:'id'});
      return this.favouriteDogData;
    }
    addFavourite(dog:DogDetails): void
    {
+     dog.title = "";
      this.favouriteCollection.add(JSON.parse(JSON.stringify(dog)));
      dog.userIDFavourite = true;
    }
    removeFavourite(dog:DogDetails): void
    {
-    this.favouriteCollection.doc().delete;
+    this.favouriteCollection.doc(dog.id).delete();
     dog.userIDFavourite = false;
    }
 }

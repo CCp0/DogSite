@@ -1,6 +1,6 @@
 <body class="bg-dark text-white min-vh-100 bg-opacity-75">
 <button (click)="getRandomDogDetails()">Random Dog</button>
-<div class="input-group d-flex justify-content-center m-2">
+<div class="input-group d-flex justify-content-center">
     <div class="form-outline text-center">
       <input id="search-input" type="search" id="form1" class="form-control" placeholder="Search" #input/>
     </div>
@@ -15,6 +15,9 @@
     <app-dog-profile [dogData]="rndDogData"></app-dog-profile>
 </div>
 <div>
-    <app-dog-profile *ngFor="let dogData of dogsData" [dogData]="dogData"></app-dog-profile>
-</div>
+  <h1 class="text-center mt-4">Favourite Dogs</h1>
+  <div class="text-center">
+   <app-dog-profile *ngFor="let dogData of dogsData" [dogData]="dogData" class="card d-inline-block bg-dark m-2"></app-dog-profile> 
+  </div>
+  </div>
 </body>

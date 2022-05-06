@@ -1,5 +1,6 @@
+import { KeyValuePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { async, Observable } from 'rxjs';
 import { DogDetails, IDogDetails } from '../interfaces/dogDetails.model';
 import { User } from '../interfaces/user.model';
 import { LoginComponent } from '../login/login.component';
@@ -16,7 +17,6 @@ export class ListDogsComponent implements OnInit {
   rndDogData!: DogDetails;
   dogsData!: DogDetails[];
   searchedDogData!:DogDetails;
-  userFavourites!:DogDetails[];
   //Dog Object URL
   private _startDogUrl = "https://dog.ceo/api/breed/";
   private _endDogUrl = "/images/random";
@@ -26,38 +26,19 @@ export class ListDogsComponent implements OnInit {
   errorMessage:any;
 
   constructor(private _dogService:DogBreedAPIService, private _dogDatabase:DogDatabaseService) {
-    
-   }
-
-  ngOnInit(): void {
-    console.log("Test Start");
-    this._dogDatabase.getDisplayDogData().subscribe(
+    this._dogDatabase.getFavourites(1).subscribe(
       dogsData =>
       {
         this.dogsData = dogsData;
+        dogsData.forEach(dog => {
+          dog.userIDFavourite = true;
+        });
       }
     );
-    this._dogDatabase.getFavourites(1).subscribe(
-      userFavourites =>
-      {
-        this.userFavourites = userFavourites;
-      }
-    );
-    console.log("No. of Favourites: " + this.userFavourites?.length);
-    console.log("No. of Base Dogs: " + this.dogsData?.length);
-    console.log("Test Complete");
-  }
+   }
 
-  getDogDetails(i:number) : DogDetails {
-    this._dogService.getRandomDogData().subscribe(
-      dogData => {
-        this.dogsData[i] = dogData;
-        this.dogsData[i].breed = dogData.message.split('/')[4];
-        console.log('Dog Pic Origin: ' + this.dogsData[i].message);
-      },
-      error => this.errorMessage = <any>error
-    );
-    return this.dogsData[i];
+  ngOnInit(): void {
+    
   }
   getRandomDogDetails() : boolean {
     this._dogService.getRandomDogData().subscribe(
@@ -78,9 +59,9 @@ export class ListDogsComponent implements OnInit {
           this.searchedDogData = searchedDogData;
           this.searchedDogData.breed = dogSearch;
           this.searchedDogData.title = "Search Result";
-          for(let i = 0; i < this.userFavourites.length; i++)
+          for(let i = 0; i < this.dogsData?.length; i++)
           {
-            if(searchedDogData.breed == this.userFavourites[i].breed)
+            if(searchedDogData.breed == this.dogsData[i].breed)
             {
                 searchedDogData.userIDFavourite = true;
             }
