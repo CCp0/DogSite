@@ -1,27 +1,17 @@
-import { KeyValuePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { async, Observable } from 'rxjs';
 import { DogDetails, IDogDetails } from '../interfaces/dogDetails.model';
-import { User } from '../interfaces/user.model';
-import { LoginComponent } from '../login/login.component';
 import { DogBreedAPIService } from '../services/dog-breed-api.service';
 import { DogDatabaseService } from '../services/dog-database.service';
 
 @Component({
   selector: 'app-list-dogs',
-  templateUrl: './list-dogs.component.html',
-  styleUrls: ['./list-dogs.component.css']
+  templateUrl: './list-dogs.component.html'
 })
 export class ListDogsComponent implements OnInit {
   //All dog data
   rndDogData!: DogDetails;
   dogsData!: DogDetails[];
   searchedDogData!:DogDetails;
-  //Dog Object URL
-  private _startDogUrl = "https://dog.ceo/api/breed/";
-  private _endDogUrl = "/images/random";
-  //User Info
-  //userID = LoginComponent.arguments.userID;
   
   errorMessage:any;
 
@@ -66,7 +56,6 @@ export class ListDogsComponent implements OnInit {
                 searchedDogData.userIDFavourite = true;
             }
           }
-          console.log(searchedDogData);
         }
       )
   }

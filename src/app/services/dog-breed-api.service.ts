@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { DogDetails, IDogDetails } from '../interfaces/dogDetails.model';
-import { HttpClient, HttpErrorResponse} from "@angular/common/http";
-import { catchError, Observable, tap } from 'rxjs';
+import { DogDetails} from '../interfaces/dogDetails.model';
+import { HttpClient} from "@angular/common/http";
+import { Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

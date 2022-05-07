@@ -1,7 +1,9 @@
 <body class="bg-dark text-white min-vh-100 bg-opacity-75">
-<button (click)="getRandomDogDetails()">Random Dog</button>
+<div class="p-1">
+<button (click)="getRandomDogDetails()" class="nav-link bg-danger text-dark border border-3 border-dark p-1 text-center"><b>Random Dog</b></button>
+</div>
 <h1 class="text-center mb-4" style="font-size: 5em;">GoodBoy.com</h1>
-<div class="input-group d-flex justify-content-center">
+<div class="input-group d-flex justify-content-center pb-4">
     <div class="form-outline text-center">
       <input id="search-input" type="search" id="form1" class="form-control" placeholder="Search" #input/>
     </div>
@@ -9,10 +11,10 @@
       <i class="bi bi-search"></i>
     </button>
   </div>
-  <div *ngIf="searchedDogData?.breed">
+  <div *ngIf="searchedDogData?.breed" class="text-center">
       <app-dog-profile [dogData]="searchedDogData"></app-dog-profile>
   </div>
-<div *ngIf="rndDogData?.breed">
+<div *ngIf="rndDogData?.breed" class="text-center">
     <app-dog-profile [dogData]="rndDogData"></app-dog-profile>
 </div>
 <div>

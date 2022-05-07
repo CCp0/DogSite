@@ -1,8 +1,3 @@
-export interface IUser {
-    userID:number,
-    username:string,
-    password:string
-}
 export class User {
     userID:number;
     username:string;
