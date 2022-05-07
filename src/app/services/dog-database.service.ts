@@ -46,12 +46,26 @@ export class DogDatabaseService {
    addFavourite(dog:DogDetails): void
    {
      dog.title = "";
+     if(this._login.getID() == 1)
+     {
      this.favouriteCollection.add(JSON.parse(JSON.stringify(dog)));
+     }
+     else if(this._login.getID() == 2)
+     {
+      this.favouriteCollectionTwo.add(JSON.parse(JSON.stringify(dog)));
+     }
      dog.userIDFavourite = true;
    }
    removeFavourite(dog:DogDetails): void
    {
+    if(this._login.getID() == 1)
+    {
     this.favouriteCollection.doc(dog.id).delete();
+    }
+    else if(this._login.getID() == 2)
+    {
+      this.favouriteCollectionTwo.doc(dog.id).delete();
+    }
     dog.userIDFavourite = false;
    }
 }

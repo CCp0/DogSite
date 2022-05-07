@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
     for(let i = 0; i < this.logins.length; i++)
     {
       console.log(this.logins[i].username + " = " + username.value);
-      console.log(this.logins[i].password + " = " + password);
+      console.log(this.logins[i].password + " = " + password.value);
       if(username.value == this.logins[i].username && password.value == this.logins[i].password)
       {
         valid = true;
@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
     if(valid == true)
     {
     this.loginService.setID(userID);
+    console.log(userID);
     }
     else{
       alert("Invalid Credentials");
