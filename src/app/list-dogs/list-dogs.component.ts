@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DogDetails, IDogDetails } from '../interfaces/dogDetails.model';
+import { DogDetails } from '../interfaces/dogDetails.model';
 import { DogBreedAPIService } from '../services/dog-breed-api.service';
 import { DogDatabaseService } from '../services/dog-database.service';
 
@@ -44,6 +44,7 @@ export class ListDogsComponent implements OnInit {
   }
   searchDogDetails(dogSearch: string)
   {
+    dogSearch = dogSearch.toLowerCase();
       this._dogService.searchDogData(dogSearch).subscribe(
         searchedDogData =>{
           this.searchedDogData = searchedDogData;
